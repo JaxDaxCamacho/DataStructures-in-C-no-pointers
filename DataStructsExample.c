@@ -17,17 +17,26 @@ typedef struct {
 	autor escritor; 
 } livro;
 
+void printcat(categoria x){
+    printf("%s \n",x.categoria);
+}
+
+void printaut(autor x){
+        printf("%s \n",x.nome);
+}
+
 
 void escrevelivros(livro x[],int y){
 	int i;
 	for(i=0; i<y ;i++){
 		printf("Numero: %i\n", x[i].numero);
 		printf("Titulo: %s\n", x[i].titulo);
-		printf("Categoria: %s\n", x[i].genero);
-		printf("Autor: %s\n\n", x[i].escritor);
+		printcat(x[i].genero);
+		printaut(x[i].escritor);
 	};
 		
 }
+
 
 void pesquisalivro(livro x[],int y,int pesq){
 	int encontrado=0;
@@ -35,20 +44,20 @@ void pesquisalivro(livro x[],int y,int pesq){
 	for(o=0; o<y;o++){
 		if(x[o].numero==pesq){
 			encontrado=1;
-			printf("Livro Encontrado");
+			printf("Livro Encontrado \n");
 			printf("Numero: %i\n", x[o].numero);
 			printf("Titulo: %s\n", x[o].titulo);
-			printf("Categoria: %s\n", x[o].genero);
-			printf("Autor: %s\n\n", x[o].escritor);
+			printcat(x[o].genero);
+			printaut(x[o].escritor);
 		}
 	}
 	if(encontrado=0){
-		printf("Nao encontrado");
+		printf("\n Nao encontrado");
 	}
 }
 
 int main() {
-	int numlivros,num,pesquisa,c,i,j;
+	int numlivros,num,pesquisa,c,i,j,select;
 	autor a;
 	livro livros[5];
 	categoria categorias[3];
@@ -75,7 +84,7 @@ int main() {
 				printf("insira  o titulo do livro :\n");
 				getchar();
 				my_scanf_long(livros[i].titulo,50);
-				getchar();
+
 				printf("Listagem de Categorias \n");
 					for(j=0;j<3;j++){
 							printf("\n %i ->",j);
@@ -83,7 +92,8 @@ int main() {
 						};
 				printf("\n Escolha a categoria 0-2 \n");
 				scanf("%i",&num);
-				livros[i].genero=categorias[num];
+				select=num;
+				livros[i].genero=categorias[select];
 				livros[i].escritor=a;
 				printf("categoria escolhida \n O autor deste livro e : %s  \n",a.nome);
 				};
@@ -95,18 +105,3 @@ int main() {
 			
 			return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
